@@ -10,4 +10,8 @@
 
 @implementation Monster
 
+-(NSString*)toString{
+    return [NSString stringWithFormat:@"%@", self.name];
+}
+
 @end

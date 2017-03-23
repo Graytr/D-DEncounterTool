@@ -73,4 +73,7 @@
 @property NSString  *reference;
 
 
+-(NSString*)toString;
+
+
 @end

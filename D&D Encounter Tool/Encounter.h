@@ -7,11 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Monster.h"
 
 @interface Encounter : NSObject
 
-@property NSString  *encounterName;
-@property NSInteger *encounterCR;
-@property NSArray   *monsterArray;
+@property NSString *encounterName;
+@property NSMutableArray *monsterArray;
+
+-(NSInteger)encounterCR;
+-(void)addToEncounterWithMonster:(Monster*)monster;
+
+-(id)initWithDictionary:(NSDictionary*)dictionary;
+-(NSDictionary*)asDictionary;
+
 
 @end

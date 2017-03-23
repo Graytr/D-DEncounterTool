@@ -13,7 +13,7 @@
 //TODO:
 /*
  set up the table to load an encounter
- this means i have to set up making encounters 
+ this means i have to set up making encounters
  when you touch a monster from the tracking table, it comes up in the monster view
  when you touch a character from the tracking table, they come up in the monster view
  then be able to set the next init
@@ -28,16 +28,17 @@
 
 @interface TrackingViewController ()
 
-@property (weak, nonatomic) IBOutlet UIPickerView   *encounterPicker;
-@property (weak, nonatomic) IBOutlet UIButton       *loadPlayersButton;
-@property (weak, nonatomic) IBOutlet UIButton       *nextInitiativeButton;
-@property (weak, nonatomic) IBOutlet UITableView    *trackingTable;
+@property (weak, nonatomic) IBOutlet UIPickerView    *encounterPicker;
+@property (weak, nonatomic) IBOutlet UIButton        *loadPlayersButton;
+@property (weak, nonatomic) IBOutlet UIButton        *nextInitiativeButton;
+@property (weak, nonatomic) IBOutlet UITableView     *trackingTable;
 @property (weak, nonatomic) IBOutlet UICharacterView *characterView;
+@property (weak, nonatomic) IBOutlet UIButton        *loadEncounterButton;
 
 
-@property NSArray* players;
-@property NSArray* encounters;
-@property NSMutableArray* curTracking;
+@property NSArray        *players;
+@property NSArray        *encounters;
+@property NSMutableArray *curTracking;
 
 
 @end
@@ -85,6 +86,10 @@
 
     [self.trackingTable reloadData];
     [self.trackingTable setScrollEnabled:YES];
+}
+
+-(IBAction)addEncounterToTracking:(id)sender{
+    
 }
 
 -(IBAction)nextInInitiative:(id)sender {

@@ -50,15 +50,23 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-S9-Cz9">
-                                <rect key="frame" x="644" y="51" width="88" height="30"/>
+                                <rect key="frame" x="520" y="66" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Load Players"/>
                                 <connections>
                                     <action selector="addPlayersToTracking:" destination="9pv-A4-QxB" eventType="touchUpInside" id="yXN-MK-WfP"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cR3-10-Q0W">
+                                <rect key="frame" x="520" y="28" width="108" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Load Encounter"/>
+                                <connections>
+                                    <action selector="addEncounterToTracking:" destination="9pv-A4-QxB" eventType="touchUpInside" id="Ijq-yP-1u0"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EQs-4B-hkz">
-                                <rect key="frame" x="651" y="116" width="32" height="30"/>
+                                <rect key="frame" x="520" y="104" width="108" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next"/>
                                 <connections>
@@ -72,6 +80,7 @@
                     <connections>
                         <outlet property="characterView" destination="J4R-ZR-6Ml" id="UI9-mz-qQE"/>
                         <outlet property="encounterPicker" destination="lzH-Vl-fHJ" id="8LL-sf-4YE"/>
+                        <outlet property="loadEncounterButton" destination="cR3-10-Q0W" id="Ge7-nG-2Ir"/>
                         <outlet property="loadPlayersButton" destination="3gb-S9-Cz9" id="B7r-ix-tKc"/>
                         <outlet property="nextInitiativeButton" destination="EQs-4B-hkz" id="RkV-J3-b5s"/>
                         <outlet property="trackingTable" destination="jPj-TB-NKQ" id="Ji3-bG-dgw"/>
@@ -104,7 +113,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOO-Fm-Yiz">
-                                <rect key="frame" x="217" y="65" width="134" height="30"/>
+                                <rect key="frame" x="217" y="65" width="178" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add New Player"/>
                                 <connections>
@@ -113,7 +122,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6cC-fz-J4I">
-                                <rect key="frame" x="217" y="103" width="134" height="30"/>
+                                <rect key="frame" x="217" y="103" width="178" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Clear All Players"/>
                                 <connections>
@@ -121,7 +130,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJx-iI-HCd">
-                                <rect key="frame" x="216" y="141" width="136" height="30"/>
+                                <rect key="frame" x="216" y="141" width="179" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Add New Encounter"/>
                                 <connections>
@@ -136,23 +145,48 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GU8-WF-CgS">
-                                <rect key="frame" x="215" y="179" width="139" height="30"/>
+                                <rect key="frame" x="215" y="179" width="180" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Clear All Encounters"/>
                                 <connections>
                                     <action selector="clearAllEncounters:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="OQA-jH-hi8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F5a-Oc-Krn">
+                                <rect key="frame" x="215" y="217" width="180" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Monster to Encounter"/>
+                                <connections>
+                                    <action selector="addMonsterToEncounter:" destination="8rJ-Kc-sve" eventType="touchUpInside" id="Erd-4b-t84"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="KXs-K6-5Jq">
+                                <rect key="frame" x="20" y="218" width="187" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CJk-Ps-T35">
+                                <rect key="frame" x="20" y="256" width="375" height="196"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
                     <connections>
+                        <outlet property="addMonsterToEncounterButton" destination="F5a-Oc-Krn" id="ZrH-1e-Tqo"/>
                         <outlet property="addNewEncounterButton" destination="qJx-iI-HCd" id="xNH-PS-Umr"/>
                         <outlet property="addNewPlayerButton" destination="cOO-Fm-Yiz" id="KWW-IG-Mkf"/>
                         <outlet property="clearAllEncountersButton" destination="GU8-WF-CgS" id="D3R-vC-k9C"/>
                         <outlet property="clearAllPlayersButton" destination="6cC-fz-J4I" id="SSH-yW-f0m"/>
                         <outlet property="encounter" destination="OPH-7N-Ru2" id="2Gm-7a-eb7"/>
+                        <outlet property="monster" destination="KXs-K6-5Jq" id="E0T-wN-oAW"/>
+                        <outlet property="monstersInEncounterLabel" destination="CJk-Ps-T35" id="afX-G3-kgr"/>
                         <outlet property="name" destination="APF-7A-Pda" id="w8e-BB-pG6"/>
                     </connections>
                 </viewController>

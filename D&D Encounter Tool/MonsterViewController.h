@@ -10,10 +10,12 @@
 #import "PlayerList.h"
 #import "EncounterList.h"
 #import "MonsterManualParser.h"
+#import "Encounter.h"
 
 @interface MonsterViewController : UIViewController
 
 @property MonsterManualParser *monsterParser;
+@property Encounter *curEncounter;
 
 @end
 

@@ -10,4 +10,24 @@
 
 @implementation Encounter
 
+-(NSInteger)encounterCR{
+    // Create a formula using the individual monster CRs
+    return 0L;
+}
+
+-(void)addToEncounterWithMonster:(Monster*)monster{
+    [self.monsterArray addObject:monster];
+}
+
+-(id)initWithDictionary:(NSDictionary *)dictionary{
+    self = [super init];
+    self.encounterName = [dictionary valueForKey:@"name"];
+    self.monsterArray  = [dictionary valueForKey:@"monsters"];
+    return self;
+}
+
+-(NSDictionary*)asDictionary{
+    return [NSDictionary dictionaryWithObjectsAndKeys:self.encounterName, @"name", self.monsterArray, @"monsters", nil];
+}
+
 @end

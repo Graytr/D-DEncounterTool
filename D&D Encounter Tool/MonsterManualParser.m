@@ -27,7 +27,6 @@
     self.xmlParser = [[NSXMLParser alloc] initWithData:xmlData];
     self.xmlParser.delegate = self;
     [self.xmlParser parse];
-    
 }
 
 -(void)parser:(NSXMLParser *)parser didStartElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName attributes:(NSDictionary<NSString *,NSString *> *)attributeDict{
@@ -46,6 +45,7 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     // If we have a closing </monster> tag, we're done parsing this monster, so add it to the array
     if ([elementName isEqualToString:@"monster"]) {
+        NSLog(@"%@", self.curMonster.name);
         [self.monsters addObject:self.curMonster];
     }
 }
@@ -77,8 +77,6 @@
         self.curMonster.initiative = [inits[0] integerValue];
     } else if ([self.curElement isEqualToString:@"speed"]){
         self.curMonster.speed = string;
-    } else if ([self.curElement isEqualToString:@"name"]){
-        self.curMonster.name = string;
     } else if ([self.curElement isEqualToString:@"armor_class"]){
         self.curMonster.AC = [string integerValue];
     } else if ([self.curElement isEqualToString:@"base_attack"]){
@@ -131,7 +129,6 @@
         self.curMonster.wisdom       = [abilityScores[4] integerValue];
         self.curMonster.charisma     = [abilityScores[5] integerValue];
     } else if ([self.curElement isEqualToString:@"skills"]){
-        self.curMonster.name = string;
         NSMutableArray *skills = [[NSMutableArray alloc] init];
         for (NSString *skill in [string componentsSeparatedByString:@", "]) {
             [skills addObject:[[[Skill alloc] init] initWithString:skill]];

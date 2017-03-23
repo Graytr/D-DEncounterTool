@@ -13,10 +13,13 @@
 
 @property (weak, nonatomic) IBOutlet UITextField    *name;
 @property (weak, nonatomic) IBOutlet UITextField    *encounter;
+@property (weak, nonatomic) IBOutlet UITextField    *monster;
 @property (weak, nonatomic) IBOutlet UIButton       *addNewPlayerButton;
 @property (weak, nonatomic) IBOutlet UIButton       *clearAllPlayersButton;
 @property (weak, nonatomic) IBOutlet UIButton       *addNewEncounterButton;
 @property (weak, nonatomic) IBOutlet UIButton       *clearAllEncountersButton;
+@property (weak, nonatomic) IBOutlet UIButton       *addMonsterToEncounterButton;
+@property (weak, nonatomic) IBOutlet UILabel        *monstersInEncounterLabel;
 
 @end
 
@@ -46,9 +49,21 @@
     [PlayerList savePlayersWithArrayOfPlayers:[NSArray array]];
 }
 
+-(IBAction)addMonsterToEncounter:(id)sender{
+    for (Monster* monster in self.monsterParser.monsters) {
+        NSLog(@"%@", monster.name);
+        if ([monster.name isEqualToString:self.name.text]) {
+            self.monstersInEncounterLabel.text = [NSString stringWithFormat:@"%@\n%@", self.monstersInEncounterLabel.text, self.name.text];
+            self.name.text = @"";
+            [self.curEncounter addToEncounterWithMonster:monster];
+            break;
+        }
+    }
+
+}
+
 -(IBAction)addNewEncounter:(id)sender{
-    NSString *encounterName = self.encounter.text;
-    NSArray *a = [[EncounterList getEncounters] arrayByAddingObject:encounterName];
+    NSArray *a = [[EncounterList getEncounters] arrayByAddingObject:[self.curEncounter asDictionary]];
     [EncounterList saveEncountersWithArrayOfEncounters:a];
 }
 
