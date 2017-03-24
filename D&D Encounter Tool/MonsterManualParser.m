@@ -19,7 +19,7 @@
     NSString   *path = [[NSBundle mainBundle] pathForResource: @"MonsterManual" ofType: @"xml"];
     NSString   *xmlString = [NSString stringWithContentsOfFile: path
                                                       encoding: NSISOLatin1StringEncoding
-                                                      error: nil];
+                                                         error: nil];
     NSData  *xmlData = [xmlString dataUsingEncoding:NSISOLatin1StringEncoding];
         
     // Set up an NSXMLParser to use
@@ -45,12 +45,18 @@
 -(void)parser:(NSXMLParser *)parser didEndElement:(NSString *)elementName namespaceURI:(NSString *)namespaceURI qualifiedName:(NSString *)qName{
     // If we have a closing </monster> tag, we're done parsing this monster, so add it to the array
     if ([elementName isEqualToString:@"monster"]) {
-        NSLog(@"%@", self.curMonster.name);
         [self.monsters addObject:self.curMonster];
     }
 }
 
 -(void)parser:(NSXMLParser *)parser foundCharacters:(NSString *)string{
+    // Fixes a bug that occurs due to the newline being a found character
+    // even though the curElement is still the old element
+    // i.e) The bug was that the newline overwrote what the actual string was supposed to be.
+    if ([string containsString:@"\n"]) {
+        return;
+    }
+    
     // Work out which element we have the characters for
     // Then set the property of the Monster object
     if ([self.curElement isEqualToString:@"family"]) {
