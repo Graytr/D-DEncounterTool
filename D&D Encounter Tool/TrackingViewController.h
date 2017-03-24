@@ -10,7 +10,7 @@
 #import "UICharacterView.h"
 #import "Encounter.h"
 
-@interface TrackingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface TrackingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource>
 
 
 @end

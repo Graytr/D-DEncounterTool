@@ -68,7 +68,7 @@
     self.players    = [PlayerList       getPlayers];
     self.encounters = [EncounterList getEncounters];
     [self.view addSubview:self.trackingTable];
-    
+    [self.encounterPicker reloadAllComponents];
 }
 
 //  Adds players (but only those who aren't already) to the tracking table.
@@ -135,6 +135,22 @@
 -(void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+// The number of columns of data
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
+    return 1;
+}
+
+// The number of rows of data
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
+    return self.encounters.count;
+}
+
+// The data to return for the row and component (column) that's being passed in
+- (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    return [((NSDictionary*)self.encounters[row]) valueForKey:@"name"];
 }
 
 
