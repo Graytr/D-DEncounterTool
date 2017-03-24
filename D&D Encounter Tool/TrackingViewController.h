@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UICharacterView.h"
+#import "Encounter.h"
 
 @interface TrackingViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 

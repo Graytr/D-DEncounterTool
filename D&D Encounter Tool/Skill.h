@@ -14,5 +14,6 @@
 @property NSInteger modifier;
 
 -(Skill*)initWithString:(NSString*)aString;
+-(NSString*)convertToString;
 
 @end

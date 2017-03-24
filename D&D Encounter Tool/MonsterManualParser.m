@@ -33,7 +33,7 @@
 
     // If we have a <monster> tag, start parsing a new monster
     if ([elementName isEqualToString:@"monster"]) {
-        self.curMonster = [[Monster alloc] init];
+        self.curMonster = [[Monster alloc] initWithEmptyStrings];
     }
     // If not then we need to keep track of the element name so
     // we know which property to set on the Monster
@@ -70,43 +70,44 @@
     } else if ([self.curElement isEqualToString:@"descriptor"]){
         // do nothing
     } else if ([self.curElement isEqualToString:@"hit_dice"]){
-        self.curMonster.HPFormula = string;
+        NSArray *stringArray = [string componentsSeparatedByString:@"("];
+        self.curMonster.HPFormula = stringArray[0];
+        self.curMonster.averageHP = @([[stringArray[1] substringToIndex:((NSString*)stringArray[1]).length-1] integerValue]);
     } else if ([self.curElement isEqualToString:@"initiative"]){
         self.curMonster.initiativeDescriptor = string;
-        
-        // The set containing everything except digits
-        NSMutableCharacterSet *nonDigitCharacterSet = [[[NSMutableCharacterSet decimalDigitCharacterSet] invertedSet] mutableCopy];
-        [nonDigitCharacterSet addCharactersInString:@"-"];
-        
-        // Extract the initiatives
-        NSArray *inits = [string componentsSeparatedByCharactersInSet:nonDigitCharacterSet];
-        self.curMonster.initiative = [inits[0] integerValue];
+        if ([[string substringToIndex:1] isEqualToString:@"+"]) {
+            string = [string substringFromIndex:1];
+        }
+        NSArray* stringArray = [string componentsSeparatedByString:@" "];
+        self.curMonster.initiative = @([stringArray[0] integerValue]);
     } else if ([self.curElement isEqualToString:@"speed"]){
         self.curMonster.speed = string;
     } else if ([self.curElement isEqualToString:@"armor_class"]){
-        self.curMonster.AC = [string integerValue];
+        self.curMonster.ACType = string;
+        NSArray *stringArray = [string componentsSeparatedByString:@" "];
+        self.curMonster.AC = @([stringArray[0] integerValue]);
     } else if ([self.curElement isEqualToString:@"base_attack"]){
         // Removes the plus sign if there is one
         if ([[string substringToIndex:1] isEqualToString:@"+"]) {
-            self.curMonster.baseAttackBonus = [[string substringFromIndex:1] integerValue];
+            self.curMonster.baseAttackBonus = @([[string substringFromIndex:1] integerValue]);
         } else {
-            self.curMonster.baseAttackBonus = [string integerValue];
+            self.curMonster.baseAttackBonus = @([string integerValue]);
         }
     } else if ([self.curElement isEqualToString:@"grapple"]){
         // Removes the plus sign if there is one
         if ([[string substringToIndex:1] isEqualToString:@"+"]) {
-            self.curMonster.grappleBonus = [[string substringFromIndex:1] integerValue];
+            self.curMonster.grappleBonus = @([[string substringFromIndex:1] integerValue]);
         } else {
-            self.curMonster.grappleBonus = [string integerValue];
+            self.curMonster.grappleBonus = @([string integerValue]);
         }
     } else if ([self.curElement isEqualToString:@"attack"]){
         self.curMonster.attack = string;
     } else if ([self.curElement isEqualToString:@"full_attack"]){
         self.curMonster.fullAttack = string;
     } else if ([self.curElement isEqualToString:@"space"]){
-        self.curMonster.space = [string integerValue];
+        self.curMonster.space = @([string integerValue]);
     } else if ([self.curElement isEqualToString:@"reach"]){
-        self.curMonster.reach = [string integerValue];
+        self.curMonster.reach = @([string integerValue]);
     } else if ([self.curElement isEqualToString:@"special_attacks"]){
         self.curMonster.specialAttacks = string;
     } else if ([self.curElement isEqualToString:@"special_qualities"]){
@@ -118,9 +119,9 @@
         
         // Extract the saves
         NSArray *saves = [string componentsSeparatedByCharactersInSet:nonDigitCharacterSet];
-        self.curMonster.fortitudeSave   = [saves[0] integerValue];
-        self.curMonster.reflexSave      = [saves[1] integerValue];
-        self.curMonster.willSave        = [saves[2] integerValue];
+        self.curMonster.fortitudeSave   = @([saves[0] integerValue]);
+        self.curMonster.reflexSave      = @([saves[1] integerValue]);
+        self.curMonster.willSave        = @([saves[2] integerValue]);
     } else if ([self.curElement isEqualToString:@"abilities"]){
         // The set containing everything except digits
         NSMutableCharacterSet *nonDigitCharacterSet = [[[NSMutableCharacterSet decimalDigitCharacterSet] invertedSet] mutableCopy];
@@ -128,12 +129,12 @@
         
         // Extract the scores
         NSArray *abilityScores = [string componentsSeparatedByCharactersInSet:nonDigitCharacterSet];
-        self.curMonster.strength     = [abilityScores[0] integerValue];
-        self.curMonster.dexterity    = [abilityScores[1] integerValue];
-        self.curMonster.constitution = [abilityScores[2] integerValue];
-        self.curMonster.intellegence = [abilityScores[3] integerValue];
-        self.curMonster.wisdom       = [abilityScores[4] integerValue];
-        self.curMonster.charisma     = [abilityScores[5] integerValue];
+        self.curMonster.strength     = @([abilityScores[0] integerValue]);
+        self.curMonster.dexterity    = @([abilityScores[1] integerValue]);
+        self.curMonster.constitution = @([abilityScores[2] integerValue]);
+        self.curMonster.intellegence = @([abilityScores[3] integerValue]);
+        self.curMonster.wisdom       = @([abilityScores[4] integerValue]);
+        self.curMonster.charisma     = @([abilityScores[5] integerValue]);
     } else if ([self.curElement isEqualToString:@"skills"]){
         NSMutableArray *skills = [[NSMutableArray alloc] init];
         for (NSString *skill in [string componentsSeparatedByString:@", "]) {
@@ -149,7 +150,7 @@
     } else if ([self.curElement isEqualToString:@"organization"]){
         self.curMonster.organization = string;
     } else if ([self.curElement isEqualToString:@"challenge_rating"]){
-        self.curMonster.CR = [string integerValue];
+        self.curMonster.CR = @([string integerValue]);
     } else if ([self.curElement isEqualToString:@"treasure"]){
         self.curMonster.treasure = string;
     } else if ([self.curElement isEqualToString:@"alignment"]){

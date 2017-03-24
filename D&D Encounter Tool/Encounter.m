@@ -16,7 +16,11 @@
 }
 
 -(void)addToEncounterWithMonster:(Monster*)monster{
-    [self.monsterArray addObject:monster];
+    if (self.monsterArray) {
+        [self.monsterArray addObject:monster];
+    } else {
+        self.monsterArray = [[NSMutableArray alloc] initWithObjects:monster, nil];
+    }
 }
 
 -(id)initWithDictionary:(NSDictionary *)dictionary{
@@ -27,7 +31,17 @@
 }
 
 -(NSDictionary*)asDictionary{
-    return [NSDictionary dictionaryWithObjectsAndKeys:self.encounterName, @"name", self.monsterArray, @"monsters", nil];
+    NSLog(@"AsDictFunct: %@", self.encounterName);
+    return [NSDictionary dictionaryWithObjectsAndKeys:self.encounterName, @"name", [self arrayOfMonsterDictionariesWithMonsterArray:self.monsterArray], @"monsters", nil];
+}
+
+-(NSArray*)arrayOfMonsterDictionariesWithMonsterArray:(NSArray*)monsterArray{
+    NSMutableArray* dictionaryArray = [[NSMutableArray alloc] init];
+    for (Monster* monster in monsterArray) {
+        [dictionaryArray addObject:[monster toDictionary]];
+        NSLog(@"%@", [monster toDictionary]);
+    }
+    return [dictionaryArray copy];
 }
 
 @end

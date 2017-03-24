@@ -31,6 +31,8 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.monsterParser = [[MonsterManualParser alloc] init];
     [self.monsterParser runParser];
+
+    self.curEncounter = [[Encounter alloc] init];
 }
 
 
@@ -50,11 +52,14 @@
 }
 
 -(IBAction)addMonsterToEncounter:(id)sender{
+
     for (Monster* monster in self.monsterParser.monsters) {
-        NSLog(@"%@", monster.name);
-        if ([monster.name isEqualToString:self.name.text]) {
-            self.monstersInEncounterLabel.text = [NSString stringWithFormat:@"%@\n%@", self.monstersInEncounterLabel.text, self.name.text];
-            self.name.text = @"";
+        if ([monster.name isEqualToString:self.monster.text]) {
+            
+            NSString *aString = [NSString stringWithFormat:@"%@\n%@", self.monstersInEncounterLabel.text, monster.name];
+            NSLog(@"%@", aString);
+            self.monstersInEncounterLabel.text = aString;
+            self.monster.text = @"";
             [self.curEncounter addToEncounterWithMonster:monster];
             break;
         }
@@ -63,8 +68,13 @@
 }
 
 -(IBAction)addNewEncounter:(id)sender{
+    self.curEncounter.encounterName = self.encounter.text;
+    self.encounter.text = @"";
+    
     NSArray *a = [[EncounterList getEncounters] arrayByAddingObject:[self.curEncounter asDictionary]];
+ 
     [EncounterList saveEncountersWithArrayOfEncounters:a];
+    self.curEncounter = [[Encounter alloc] init];
 }
 
 -(IBAction)clearAllEncounters:(id)sender{

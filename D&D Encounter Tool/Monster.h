@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Skill.h"
 
 @interface Monster : NSObject
 
@@ -17,29 +18,29 @@
 @property NSString  *type;
 @property NSString  *size;
 @property NSString  *align;
-@property NSInteger AC;
+@property NSNumber  *AC;
 @property NSString  *ACType;
-@property NSInteger CR;
+@property NSNumber  *CR;
 @property NSString  *HPFormula;
-@property NSInteger averageHP;
+@property NSNumber  *averageHP;
 @property NSString  *speed;
-@property NSInteger baseAttackBonus;
-@property NSInteger grappleBonus;
+@property NSNumber  *baseAttackBonus;
+@property NSNumber  *grappleBonus;
 @property NSString  *initiativeDescriptor;
-@property NSInteger initiative;
+@property NSNumber  *initiative;
 
 //Ability Scores
-@property NSInteger strength;
-@property NSInteger dexterity;
-@property NSInteger constitution;
-@property NSInteger wisdom;
-@property NSInteger intellegence;
-@property NSInteger charisma;
+@property NSNumber  *strength;
+@property NSNumber  *dexterity;
+@property NSNumber  *constitution;
+@property NSNumber  *wisdom;
+@property NSNumber  *intellegence;
+@property NSNumber  *charisma;
 
 //Saving Throws
-@property NSInteger fortitudeSave;
-@property NSInteger willSave;
-@property NSInteger reflexSave;
+@property NSNumber  *fortitudeSave;
+@property NSNumber  *willSave;
+@property NSNumber  *reflexSave;
 
 //Skills, feats, etc.
 @property NSArray   *skills;
@@ -52,8 +53,8 @@
 @property NSString  *fullAttack;
 
 //Detailed Info
-@property NSInteger space;
-@property NSInteger reach;
+@property NSNumber  *space;
+@property NSNumber  *reach;
 @property NSString  *specialAttacks;
 @property NSString  *damageResistance;
 @property NSString  *damageImmunity;
@@ -62,7 +63,7 @@
 @property NSString  *treasure;
 
 //Roleplaying
-@property NSString  *description;
+@property NSString  *monsterDescription;
 @property NSString  *tacticsDescription;
 @property NSString  *actions;
 @property NSString  *environment;
@@ -74,6 +75,8 @@
 
 
 -(NSString*)toString;
+-(NSDictionary*)toDictionary;
+-(id)initWithEmptyStrings;
 
 
 @end

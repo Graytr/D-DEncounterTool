@@ -13,7 +13,6 @@
 //TODO:
 /*
  set up the table to load an encounter
- this means i have to set up making encounters
  when you touch a monster from the tracking table, it comes up in the monster view
  when you touch a character from the tracking table, they come up in the monster view
  then be able to set the next init

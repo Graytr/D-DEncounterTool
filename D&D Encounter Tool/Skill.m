@@ -40,4 +40,12 @@
     return self;
 }
 
+-(NSString*)convertToString{
+    if (self.modifier >= 0) {
+        return [NSString stringWithFormat:@"+%ld %@", (long)self.modifier, self.skillName];
+    } else {
+        return [NSString stringWithFormat:@"%ld %@", (long)self.modifier, self.skillName];
+    }
+}
+
 @end
