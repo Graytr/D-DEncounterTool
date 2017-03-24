@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		155ED1BA1E85CB6600D4678B /* DiceRoller.m in Sources */ = {isa = PBXBuildFile; fileRef = 155ED1B91E85CB6600D4678B /* DiceRoller.m */; };
 		15DEFBEF1E81ED05009E9966 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DEFBEE1E81ED05009E9966 /* main.m */; };
 		15DEFBF21E81ED05009E9966 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DEFBF11E81ED05009E9966 /* AppDelegate.m */; };
 		15DEFBF51E81ED05009E9966 /* TrackingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15DEFBF41E81ED05009E9966 /* TrackingViewController.m */; };
@@ -47,6 +48,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		155ED1B81E85CB6600D4678B /* DiceRoller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiceRoller.h; sourceTree = "<group>"; };
+		155ED1B91E85CB6600D4678B /* DiceRoller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiceRoller.m; sourceTree = "<group>"; };
 		15DEFBEA1E81ED05009E9966 /* D&D Encounter Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "D&D Encounter Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		15DEFBEE1E81ED05009E9966 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		15DEFBF01E81ED05009E9966 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -187,6 +190,8 @@
 				15DEFC391E834428009E9966 /* EncounterList.m */,
 				15DEFC461E836877009E9966 /* MonsterManualParser.h */,
 				15DEFC471E836877009E9966 /* MonsterManualParser.m */,
+				155ED1B81E85CB6600D4678B /* DiceRoller.h */,
+				155ED1B91E85CB6600D4678B /* DiceRoller.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -367,6 +372,7 @@
 				15DEFBF51E81ED05009E9966 /* TrackingViewController.m in Sources */,
 				15DEFC2C1E82170C009E9966 /* UICharacterView.m in Sources */,
 				15DEFBEF1E81ED05009E9966 /* main.m in Sources */,
+				155ED1BA1E85CB6600D4678B /* DiceRoller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +608,7 @@
 				15DEFC1C1E81ED05009E9966 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15DEFC1D1E81ED05009E9966 /* Build configuration list for PBXNativeTarget "D&D Encounter ToolTests" */ = {
 			isa = XCConfigurationList;
@@ -610,6 +617,7 @@
 				15DEFC1F1E81ED05009E9966 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		15DEFC201E81ED05009E9966 /* Build configuration list for PBXNativeTarget "D&D Encounter ToolUITests" */ = {
 			isa = XCConfigurationList;
@@ -618,6 +626,7 @@
 				15DEFC221E81ED05009E9966 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
