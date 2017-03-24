@@ -121,4 +121,53 @@
     return [array copy];
 }
 
+-(id)initWithDictionary:(NSDictionary *)monsterDict{
+        self = [super init];
+        self.name = [monsterDict valueForKey:@"name"];
+        self.family = [monsterDict valueForKey:@"family"];
+        self.type = [monsterDict valueForKey:@"type"];
+        self.align = [monsterDict valueForKey:@"align"];
+        self.AC = [monsterDict valueForKey:@"AC"];
+        self.ACType = [monsterDict valueForKey:@"ACType"];
+        self.CR = [monsterDict valueForKey:@"CR"];
+        self.HPFormula = [monsterDict valueForKey:@"HPFormula"];
+        self.averageHP = [monsterDict valueForKey:@"averageHP"];
+        self.speed = [monsterDict valueForKey:@"speed"];
+        self.baseAttackBonus = [monsterDict valueForKey:@"baseAttackBonus"];
+        self.grappleBonus = [monsterDict valueForKey:@"grappleBonus"];
+        self.initiativeDescriptor = [monsterDict valueForKey:@"initiativeDescriptor"];
+        self.initiative = [monsterDict valueForKey:@"initiative"];
+        self.strength = [monsterDict valueForKey:@"strength"];
+        self.dexterity = [monsterDict valueForKey:@"dexterity"];
+        self.constitution = [monsterDict valueForKey:@"constitution"];
+        self.wisdom = [monsterDict valueForKey:@"wisdom"];
+        self.intellegence = [monsterDict valueForKey:@"intellegence"];
+        self.charisma = [monsterDict valueForKey:@"charisma"];
+        self.fortitudeSave = [monsterDict valueForKey:@"fortitudeSave"];
+        self.willSave = [monsterDict valueForKey:@"willSave"];
+        self.reflexSave = [monsterDict valueForKey:@"reflexSave"];
+        self.skills = [monsterDict valueForKey:@"skills"];
+        self.specialQualities = [monsterDict valueForKey:@"specialQualities"];
+        self.feats = [monsterDict valueForKey:@"feats"];
+        self.epicFeats = [monsterDict valueForKey:@"epicFeats"];
+        self.attack = [monsterDict valueForKey:@"attack"];
+        self.fullAttack = [monsterDict valueForKey:@"fullAttack"];
+        self.space = [monsterDict valueForKey:@"space"];
+        self.reach = [monsterDict valueForKey:@"reach"];
+        self.specialAttacks = [monsterDict valueForKey:@"specialAttacks"];
+        self.damageResistance = [monsterDict valueForKey:@"damageResistance"];
+        self.damageImmunity = [monsterDict valueForKey:@"damageImmunity"];
+        self.conditionImmunity = [monsterDict valueForKey:@"conditionImmunity"];
+        self.languages = [monsterDict valueForKey:@"languages"];
+        self.treasure = [monsterDict valueForKey:@"treasure"];
+        self.monsterDescription = [monsterDict valueForKey:@"monsterDescription"];
+        self.tacticsDescription = [monsterDict valueForKey:@"tacticsDescription"];
+        self.actions = [monsterDict valueForKey:@"actions"];
+        self.environment = [monsterDict valueForKey:@"environment"];
+        self.organization = [monsterDict valueForKey:@"organization"];
+        self.advancement = [monsterDict valueForKey:@"advancment"];
+        self.reference = [monsterDict valueForKey:@"reference"];
+        return self;
+}
+
 @end

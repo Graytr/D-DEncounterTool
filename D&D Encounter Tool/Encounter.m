@@ -26,7 +26,7 @@
 -(id)initWithDictionary:(NSDictionary *)dictionary{
     self = [super init];
     self.encounterName = [dictionary valueForKey:@"name"];
-    self.monsterArray  = [dictionary valueForKey:@"monsters"];
+    self.monsterArray  = [self mutableArrayOfMonstersWithArrayOfMonsterDictionaries:[dictionary valueForKey:@"monsters"]];
     return self;
 }
 
@@ -39,9 +39,16 @@
     NSMutableArray* dictionaryArray = [[NSMutableArray alloc] init];
     for (Monster* monster in monsterArray) {
         [dictionaryArray addObject:[monster toDictionary]];
-        NSLog(@"%@", [monster toDictionary]);
     }
     return [dictionaryArray copy];
+}
+
+-(NSMutableArray*)mutableArrayOfMonstersWithArrayOfMonsterDictionaries:(NSArray*)monsterDicts{
+    NSMutableArray* monsterArray = [[NSMutableArray alloc] init];
+    for (NSDictionary* dict in monsterDicts) {
+        [monsterArray addObject:[[Monster alloc] initWithDictionary:dict]];
+    }
+    return monsterArray;
 }
 
 @end

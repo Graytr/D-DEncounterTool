@@ -12,7 +12,6 @@
 
 //TODO:
 /*
- set up the table to load an encounter
  when you touch a monster from the tracking table, it comes up in the monster view
  when you touch a character from the tracking table, they come up in the monster view
  then be able to set the next init
@@ -66,7 +65,7 @@
     //      being able to update the player list on the next tab (and we
     //      want to have the most updated one)
     self.players    = [PlayerList       getPlayers];
-    self.encounters = [EncounterList getEncounters];
+    self.encounters = [self arrayOfEncountersWithArrayOfDictionaries:[EncounterList getEncounters]];
     [self.view addSubview:self.trackingTable];
     [self.encounterPicker reloadAllComponents];
 }
@@ -88,7 +87,18 @@
 }
 
 -(IBAction)addEncounterToTracking:(id)sender{
+    NSInteger selectedEncounterIndex = [self.encounterPicker selectedRowInComponent:0];
+    Encounter* selectedEncounter = self.encounters[selectedEncounterIndex];
+    for (Monster* monster in selectedEncounter.monsterArray) {
+        if ([self.curTracking containsObject:monster.name]) {
+            // do nothing, because the monster is already there
+        } else {
+            [self.curTracking addObject:monster.name];
+        }
+    }
     
+    [self.trackingTable reloadData];
+    [self.trackingTable setScrollEnabled:YES];
 }
 
 -(IBAction)nextInInitiative:(id)sender {
@@ -150,11 +160,17 @@
 
 // The data to return for the row and component (column) that's being passed in
 - (NSString*)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-    return [((NSDictionary*)self.encounters[row]) valueForKey:@"name"];
+    return ((Encounter*)self.encounters[row]).encounterName;
 }
 
 
-
+-(NSArray*)arrayOfEncountersWithArrayOfDictionaries:(NSArray*)dicts{
+    NSMutableArray* encounters = [[NSMutableArray alloc] init];
+    for (NSDictionary* dict in dicts) {
+        [encounters addObject:[[Encounter alloc] initWithDictionary:dict]];
+    }
+    return [encounters copy];
+}
 
 
 @end

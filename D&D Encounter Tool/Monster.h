@@ -77,6 +77,7 @@
 -(NSString*)toString;
 -(NSDictionary*)toDictionary;
 -(id)initWithEmptyStrings;
+-(id)initWithDictionary:(NSDictionary*)monsterDict;
 
 
 @end
