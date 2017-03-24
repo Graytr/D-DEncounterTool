@@ -21,7 +21,7 @@
 
 
 -(NSInteger)rollInitiativeWithMonster:(Monster *)monster{
-    NSString* formula = ((NSString*)[monster.initiativeDescriptor componentsSeparatedByString:@" "][0]);
+    NSString* formula = [NSString stringWithFormat:@"1d20+%@", monster.initiative];
     return [self rollDiceWithString:formula];
 }
 
