@@ -18,8 +18,6 @@
     return [self rollDiceWithString:monster.HPFormula];
 }
 
-
-
 -(NSInteger)rollInitiativeWithMonster:(Monster *)monster{
     NSString* formula = [NSString stringWithFormat:@"1d20+%@", monster.initiative];
     return [self rollDiceWithString:formula];

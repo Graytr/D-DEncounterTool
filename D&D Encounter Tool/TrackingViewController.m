@@ -36,6 +36,7 @@
 
 @property NSArray        *players;
 @property NSArray        *encounters;
+@property Encounter      *curEncounter;
 @property NSMutableArray *curTracking;
 
 
@@ -88,8 +89,8 @@
 
 -(IBAction)addEncounterToTracking:(id)sender{
     NSInteger selectedEncounterIndex = [self.encounterPicker selectedRowInComponent:0];
-    Encounter* selectedEncounter = self.encounters[selectedEncounterIndex];
-    for (Monster* monster in selectedEncounter.monsterArray) {
+    self.curEncounter = self.encounters[selectedEncounterIndex];
+    for (Monster* monster in self.curEncounter.monsterArray) {
         if ([self.curTracking containsObject:monster.name]) {
             // do nothing, because the monster is already there
         } else {
@@ -106,7 +107,7 @@
 }
 
 
-#pragma mark - Tag Table View
+#pragma mark - Table View
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -139,14 +140,20 @@
     return cell;
 }
 
-
-
-
--(void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    for (Monster* monster in self.curEncounter.monsterArray) {
+        if ([monster.name isEqualToString:self.curTracking[indexPath.row]]) {
+            self.characterView.curMonster = monster;
+            [self.characterView setLabels];
+            break;
+        }
+    }
 }
 
+
+
+
+#pragma mark - Picker View
 
 // The number of columns of data
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -171,6 +178,14 @@
     }
     return [encounters copy];
 }
+
+
+
+-(void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
 
 
 @end
